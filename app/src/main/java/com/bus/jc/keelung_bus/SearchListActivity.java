@@ -30,9 +30,14 @@ public class SearchListActivity extends AppCompatActivity {
                 JSONObject data = array.getJSONObject(position);
                 Intent i = new Intent();
                 if(data.has("Id")) {
+                    i.putExtra("Id",data.getString("Id"));
+                    i.putExtra("nameZh",data.getString("nameZh"));
+                    i.putExtra("departureZh",data.getString("departureZh"));
+                    i.putExtra("destinationZh",data.getString("destinationZh"));
                     i.setClass(SearchListActivity.this, BusEstimateTimeActivity.class);
                 }
                 else {
+                    i.putExtra("nameZh",data.getString("nameZh"));
                     i.setClass(SearchListActivity.this, StopEstimateTimeActivity.class);
                 }
 
