@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("基隆公車Only");
+        getSupportActionBar().setTitle("基隆公車");
 
         busbtn = (Button) findViewById(R.id.busbtn);
         busbtn.setOnClickListener(new View.OnClickListener() {
