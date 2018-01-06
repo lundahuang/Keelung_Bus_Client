@@ -15,6 +15,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class BusEstimateTimeActivity extends AppCompatActivity {
     private Bus_Module bus = new Bus_Module();
@@ -25,7 +27,8 @@ public class BusEstimateTimeActivity extends AppCompatActivity {
     private ListView listviewGo;
     private ListView listviewBack;
     private JSONObject json;
-
+    private Timer timer = new Timer();
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +60,15 @@ public class BusEstimateTimeActivity extends AppCompatActivity {
         listviewGo = (ListView) findViewById(R.id.listBusdataGo);
         listviewBack = (ListView) findViewById(R.id.listBusdataBack);
 
-        downloadDataFromServer(true);
-        downloadDataFromServer(false);
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                downloadDataFromServer(true);
+                downloadDataFromServer(false);
+            }
+        };
+
+        timer.schedule(task,0,5000);
     }
 
     private void downloadDataFromServer(boolean goBack) {
