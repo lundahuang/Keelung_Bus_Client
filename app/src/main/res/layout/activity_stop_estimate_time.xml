@@ -65,12 +65,18 @@
                         android:id="@+id/listBusdataBack"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+<<<<<<< HEAD
                         android:layout_marginRight="0dp" >
 
                     </ListView>
                 </LinearLayout>
             </FrameLayout>
 
+=======
+                        android:layout_marginRight="0dp" />
+                </LinearLayout>
+            </FrameLayout>
+>>>>>>> upstream/master
         </LinearLayout>
     </TabHost>
 
