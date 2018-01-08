@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +29,7 @@ public class BusEstimateTimeActivity extends AppCompatActivity {
     private ListView listviewBack;
     private JSONObject json;
     private Timer timer = new Timer();
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class BusEstimateTimeActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(nameZh);
+        getSupportActionBar().setTitle(nameZh + " (每5秒更新)");
 
         TabHost host = (TabHost) findViewById(R.id.tabHost);
         host.setup();
@@ -60,11 +61,13 @@ public class BusEstimateTimeActivity extends AppCompatActivity {
         listviewGo = (ListView) findViewById(R.id.listBusdataGo);
         listviewBack = (ListView) findViewById(R.id.listBusdataBack);
 
+
+
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                downloadDataFromServer(true);
                 downloadDataFromServer(false);
+                downloadDataFromServer(true);
             }
         };
 
@@ -93,9 +96,9 @@ public class BusEstimateTimeActivity extends AppCompatActivity {
                         public void run() {
                             ArrayAdapter adapter = new ArrayAdapter(BusEstimateTimeActivity.this,android.R.layout.simple_list_item_1,str);
                             if(goBack_f)
-                                listviewGo.setAdapter(adapter);
-                            else
                                 listviewBack.setAdapter(adapter);
+                            else
+                                listviewGo.setAdapter(adapter);
                         }
                     });
                 } catch (IOException e) {

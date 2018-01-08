@@ -34,7 +34,7 @@ public class StopEstimateTimeActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(nameZh);
+        getSupportActionBar().setTitle(nameZh + " (每5秒更新)");
 
         TabHost host = (TabHost) findViewById(R.id.tabHost);
         host.setup();
@@ -54,12 +54,12 @@ public class StopEstimateTimeActivity extends AppCompatActivity {
         listviewBack = (ListView) findViewById(R.id.listBusdataBack);
 
 
-
+        
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                downloadDataFromServer(true);
                 downloadDataFromServer(false);
+                downloadDataFromServer(true);
             }
         };
 
@@ -88,9 +88,9 @@ public class StopEstimateTimeActivity extends AppCompatActivity {
                         public void run() {
                             ArrayAdapter adapter = new ArrayAdapter(StopEstimateTimeActivity.this,android.R.layout.simple_list_item_1,str);
                             if(goBack_f)
-                                listviewGo.setAdapter(adapter);
-                            else
                                 listviewBack.setAdapter(adapter);
+                            else
+                                listviewGo.setAdapter(adapter);
                         }
                     });
                 } catch (IOException e) {

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.bus.jc.keelung_bus.BusEstimateTimeActivity">
 
+
+
     <TabHost
         android:id="@+id/tabHost"
         android:layout_width="0dp"
